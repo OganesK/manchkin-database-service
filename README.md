@@ -1,1 +1,0 @@
-# manchkin-database-service
