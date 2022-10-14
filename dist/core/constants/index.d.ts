@@ -3,3 +3,7 @@ export declare const DEVELOPMENT = "development";
 export declare const TEST = "test";
 export declare const PRODUCTION = "production";
 export declare const USER_REPOSITORY = "USER_REPOSITORY";
+export declare const TREASURE_CARD_REPOSITORY = "TREASURE_CARD_REPOSITORY";
+export declare const MONSTER_CARD_REPOSITORY = "MONSTER_CARD_REPOSITORY";
+export declare const CURSE_CARD_REPOSITORY = "CURSE_CARD_REPOSITORY";
+export declare const EXTRA_ADDITION_REPOSITORY = "EXTRA_ADDITION_REPOSITORY";

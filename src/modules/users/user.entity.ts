@@ -6,19 +6,20 @@ export class User extends Model<User> {
     type: DataType.STRING,
     allowNull: false,
   })
-  nickName: string;
+    nickName: string;
 
   @Column({
     type: DataType.STRING,
     unique: true,
     allowNull: false,
   })
-  email: string;
+    email: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  password: string;
+    password: string;
 
+  dataValues: { [x: string]: any; password: any; };
 }

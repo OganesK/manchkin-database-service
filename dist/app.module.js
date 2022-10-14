@@ -8,10 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const database_module_1 = require("./core/database/database.module");
 const config_1 = require("@nestjs/config");
+const database_module_1 = require("./core/database/database.module");
 const users_module_1 = require("./modules/users/users.module");
 const auth_module_1 = require("./modules/auth/auth.module");
+const treasure_card_module_1 = require("./modules/treasure-card/treasure-card.module");
+const monster_card_module_1 = require("./modules/monster-card/monster-card.module");
+const curse_card_module_1 = require("./modules/curse-card/curse-card.module");
+const extra_addition_module_1 = require("./modules/extra-addition/extra-addition.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -21,6 +25,10 @@ AppModule = __decorate([
             database_module_1.DatabaseModule,
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
+            treasure_card_module_1.TreasureCardModule,
+            monster_card_module_1.MonsterCardModule,
+            curse_card_module_1.CurseCardModule,
+            extra_addition_module_1.ExtraAdditionModule,
         ],
         controllers: [],
         providers: [],

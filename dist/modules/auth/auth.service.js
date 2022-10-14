@@ -23,8 +23,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const bcrypt = require("bcrypt");
-const users_service_1 = require("../users/users.service");
 const jwt_1 = require("@nestjs/jwt");
+const users_service_1 = require("../users/users.service");
 let AuthService = class AuthService {
     constructor(userService, jwtService) {
         this.userService = userService;
@@ -39,31 +39,27 @@ let AuthService = class AuthService {
         if (!match) {
             return null;
         }
-        const _a = user['dataValues'], { password } = _a, result = __rest(_a, ["password"]);
+        const _a = user.dataValues, { password } = _a, result = __rest(_a, ["password"]);
         return result;
     }
     async login(user) {
-        const token = await this.generateToken(user);
-        return token;
+        return await this.generateToken(user);
     }
     async create(user) {
         const hashPass = await this.hashPassword(user.password);
         const newUser = await this.userService.create(Object.assign(Object.assign({}, user), { password: hashPass }));
-        const _a = newUser['dataValues'], { password } = _a, result = __rest(_a, ["password"]);
+        const _a = newUser.dataValues, { password } = _a, result = __rest(_a, ["password"]);
         const token = await this.generateToken(result);
         return { user: result, token };
     }
     async generateToken(user) {
-        const token = await this.jwtService.signAsync(user);
-        return token;
+        return await this.jwtService.signAsync(user);
     }
     async hashPassword(password) {
-        const hashPass = await bcrypt.hash(password, 10);
-        return hashPass;
+        return await bcrypt.hash(password, 10);
     }
     async comparePassword(enteredPassword, dbPassword) {
-        const match = await bcrypt.compare(enteredPassword, dbPassword);
-        return match;
+        return await bcrypt.compare(enteredPassword, dbPassword);
     }
 };
 AuthService = __decorate([

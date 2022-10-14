@@ -13,8 +13,8 @@ let ValidateInputPipe = class ValidateInputPipe extends common_1.ValidationPipe 
         try {
             return await super.transform(value, metadata);
         }
-        catch (e) {
-            throw new common_1.UnprocessableEntityException(e);
+        catch (error) {
+            throw new common_1.UnprocessableEntityException(error);
         }
     }
     handleError(errors) {

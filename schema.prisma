@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ADDITIONAL_ACTION {
+  DO_NOT_FIGHT_WITH
+  HAVE_BONUS
+  DROP_ITEM
+  IGNORE_BONUSES
+
+}
+
+enum SLOT {
+  ONE_HAND
+  TWO_HAND
+  HEAD
+  FEET
+  BODY
+  FREE
+  DECK
+}
+
+model extraAddition {
+  id String @id @default(uuid())
+  description String
+  monsterCards MonsterCard[]
+  treasureCards  TreasureCard[]
+  curseCards    CurseCard[]
+}
+
+model MonsterCard {
+  id String @id @default(uuid())
+  name  String
+  description String
+  obscenity String
+  strength  Int
+  Type      String
+  extraAdditionId String
+
+  additionalInfoid  String
+  additionalInfo  extraAddition @relation(fields: [additionalInfoid], references: [id])
+}
+
+model CurseCard {
+  id String @id @default(uuid())
+  name  String
+  description String
+
+  additionalInfoid  String
+  additionalInfo  extraAddition @relation(fields: [additionalInfoid], references: [id])
+}
+
+model TreasureCard {
+  id String @id @default(uuid())
+  forWho String
+  name  String
+  description String
+  cost  Int
+  bonus String
+  isBig Boolean
+  slot  SLOT
+  extraAction String?
+
+  additionalInfoid  String
+  additionalInfo  extraAddition @relation(fields: [additionalInfoid], references: [id])
+}
+
+model User {
+  id  String @id @default(uuid())
+  login String @unique
+  password String
+  nickName  String
+}

@@ -5,7 +5,9 @@ export declare class AuthController {
     constructor(authService: AuthService);
     login(req: any): Promise<string>;
     signUp(user: UserDTO): Promise<{
-        user: any;
+        user: {
+            [x: string]: any;
+        };
         token: string;
     }>;
 }

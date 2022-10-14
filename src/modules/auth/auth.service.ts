@@ -1,42 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthService {
-  constructor(
+  constructor (
     private readonly userService: UsersService,
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string) {
-    //find if user-email exists
+  async validateUser (username: string, pass: string) {
+    // find if user-email exists
     const user = await this.userService.findOneByEmail(username);
+
     if (!user) {
       return null;
     }
 
-    //find user-password match
+    // find user-password match
     const match = await this.comparePassword(pass, user.password);
 
     if (!match) {
       return null;
     }
 
-    const { password, ...result } = user['dataValues'];
+    const { password, ...result } = user.dataValues;
 
     return result;
   }
 
-  public async login(user) {
-    const token = await this.generateToken(user);
-
-    return token;
+  public async login (user) {
+    return await this.generateToken(user);
   }
 
-  public async create(user) {
-    //hash password
+  public async create (user) {
+    // hash password
     const hashPass = await this.hashPassword(user.password);
 
     const newUser = await this.userService.create({
@@ -44,28 +43,23 @@ export class AuthService {
       password: hashPass,
     });
 
-    const { password, ...result } = newUser['dataValues'];
+    const { password, ...result } = newUser.dataValues;
 
-    //get token
+    // get token
     const token = await this.generateToken(result);
 
     return { user: result, token };
   }
 
-  private async generateToken(user) {
-    const token = await this.jwtService.signAsync(user);
-
-    return token;
+  private async generateToken (user) {
+    return await this.jwtService.signAsync(user);
   }
 
-  private async hashPassword(password) {
-    const hashPass = await bcrypt.hash(password, 10);
-
-    return hashPass;
+  private async hashPassword (password) {
+    return await bcrypt.hash(password, 10);
   }
 
-  private async comparePassword(enteredPassword, dbPassword) {
-    const match = await bcrypt.compare(enteredPassword, dbPassword);
-    return match;
+  private async comparePassword (enteredPassword, dbPassword) {
+    return await bcrypt.compare(enteredPassword, dbPassword);
   }
 }
