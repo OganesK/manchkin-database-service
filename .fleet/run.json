@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "yarn start:dev",
+            "program": "zsh yarn start:dev",
+        },
+
+    ]
+}
