@@ -7,7 +7,7 @@ async function bootstrap () {
   const app = await NestFactory.create(AppModule);
 
   // gloabal prefix
-  app.setGlobalPrefix('v1');
+  app.setGlobalPrefix('api/v1');
   // handle input validation
   app.useGlobalPipes(new ValidateInputPipe());
 
@@ -18,7 +18,7 @@ async function bootstrap () {
     .build();
   const document = SwaggerModule.createDocument(app, config);
 
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('documentation', app, document);
   app.enableCors();
   await app.listen(4000);
 }
