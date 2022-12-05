@@ -10,7 +10,7 @@ export const databaseConfig: IDatabaseConfig = {
     password: process.env.DB_PASS || 'root',
     database: process.env.DB_NAME_DEVELOPMENT,
     host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || '5432',
+    port: process.env.DB_PORT || '5433',
     dialect: process.env.DB_DIALECT || 'postgres',
   },
   test: {
@@ -18,7 +18,7 @@ export const databaseConfig: IDatabaseConfig = {
     password: process.env.DB_PASS || 'root',
     database: process.env.DB_NAME_TEST,
     host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || '5432',
+    port: process.env.DB_PORT || '5433',
     dialect: process.env.DB_DIALECT || 'postgres',
   },
   production: {
@@ -26,7 +26,7 @@ export const databaseConfig: IDatabaseConfig = {
     password: process.env.DB_PASS || 'root',
     database: process.env.DB_NAME_PRODUCTION,
     host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || '5432',
+    port: process.env.DB_PORT || '5433',
     dialect: process.env.DB_DIALECT || 'postgres',
   },
 };
